@@ -8,6 +8,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import org.apache.poi.ss.usermodel.Cell
+import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
 
@@ -20,7 +21,7 @@ fun main() = application {
 fun readExcelFile(file: File): List<Student> {
     val data = mutableListOf<Student>()
     val fis = FileInputStream(file)
-    val workbook = XSSFWorkbook(fis)
+    val workbook = WorkbookFactory.create(fis)
     val sheet = workbook.getSheetAt(0)
 
     for (row in sheet) {
