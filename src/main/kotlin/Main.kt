@@ -96,7 +96,7 @@ fun createSheet(workbook: Workbook, students: List<Student>) {
     val sheet = workbook.createSheet(if (students.firstOrNull()?.groupId == 1) "ИТ-41" else "ИТ-42")
     val headerRow = sheet.createRow(0)
 
-    val headers = listOf("Фамилия", "Имя", "Результат")
+    val headers = listOf("Фамилия", "Имя", "Уверенность", "Результат")
 
     headers.forEachIndexed { index, header ->
         val cell = headerRow.createCell(index)
@@ -108,7 +108,8 @@ fun createSheet(workbook: Workbook, students: List<Student>) {
             val row = sheet.createRow(rowIndex + 1)
             row.createCell(0).apply { setCellValue(rowData.surname) }
             row.createCell(1).apply { setCellValue(rowData.name) }
-            row.createCell(2).apply { setCellValue(if (rowData.result > 0.5) "Зачет" else "Не зачет") }
+            row.createCell(2).apply { setCellValue(rowData.result) }
+            row.createCell(3).apply { setCellValue(if (rowData.result > 0.5) "Зачет" else "Не зачет") }
         }
 }
 
