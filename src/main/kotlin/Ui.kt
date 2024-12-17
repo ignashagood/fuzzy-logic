@@ -88,13 +88,6 @@ fun PrettyTable(students: List<Student>) {
                     .padding(8.dp)
             ) {
                 Text(
-                    text = "№",
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp),
-                    textAlign = TextAlign.Center
-                )
-                Text(
                     text = "Фамилия",
                     modifier = Modifier
                         .weight(1f)
@@ -167,13 +160,6 @@ fun PrettyTable(students: List<Student>) {
                     .background(if (rowIndex % 2 == 0) Color.White else Color(0xFFEFEFEF)) // Чередование цвета строк
                     .padding(8.dp)
             ) {
-                Text(
-                    text = student.id.toString(),
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(8.dp),
-                    textAlign = TextAlign.Center
-                )
                 Text(
                     text = student.surname,
                     modifier = Modifier

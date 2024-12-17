@@ -1,6 +1,5 @@
 import fuzzy4j.sets.LinearFunction
 import java.math.RoundingMode
-import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
 
@@ -41,8 +40,8 @@ class FuzzyLogic {
                 (studentWorksGood[0] > 0 && studentWorksGood[2] > 0 && studentWorksGood[3] > 0)
         val worksGoodLists =
             listOf(
-                studentWorksGood.subList(0, 2),
-                studentWorksGood.subList(1, 3),
+                studentWorksGood.subList(0, 3),
+                studentWorksGood.subList(1, 4),
                 listOf(studentWorksGood[0], studentWorksGood[1], studentWorksGood[3]),
                 listOf(studentWorksGood[0], studentWorksGood[2], studentWorksGood[3]),
             )
@@ -53,11 +52,11 @@ class FuzzyLogic {
         // или (КР2 ≥ «хорошо» и КР3 ≥ «хорошо» и КР4 ≥ «хорошо»)), то автомат
         val secondRule =
             if (studentAttendanceHigh > 0 && studentPairWorkGood > 0 && worksGoodCondition) {
-                min(min(studentAttendanceLow, studentPairWorkGood), worksGoodLists.maxOfOrNull { it.min() } ?: 0.0)
+                min(min(studentAttendanceHigh, studentPairWorkGood), worksGoodLists.maxOfOrNull { it.min() } ?: 0.0)
             } else {
                 0.0
             }
 
-        return max(firstRule, secondRule).toBigDecimal().setScale(2, RoundingMode.CEILING).toDouble()
+        return max(firstRule, secondRule).toBigDecimal().setScale(2, RoundingMode.DOWN).toDouble()
     }
 }

@@ -1,5 +1,6 @@
 data class Student(
     val id: Int,
+    val groupId: Int,
     val surname: String,
     val name: String,
     val firstWork: Int,
